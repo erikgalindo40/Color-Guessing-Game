@@ -1,10 +1,10 @@
 import React from 'react'
 import ColorOption from './ColorOption'
 
-function OptionContainer() {
+function OptionContainer({ onOptionSelect }) {
   return (
     <div className='color-option-container'>
-        <ColorOption/>
+        <ColorOption onOptionSelect={onOptionSelect}/>
         <ColorOption/>
         <ColorOption/>
     </div>
