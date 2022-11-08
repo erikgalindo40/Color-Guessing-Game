@@ -9,8 +9,7 @@ function App() {
 
   useEffect(() => {
     let hex = getRanHex()
-    setColor(`#${hex}`)
-    console.log(hex)
+    setColor(hex)
   }, [])
   
 
@@ -21,18 +20,19 @@ function App() {
     for (let n = 0; n < 6; n++) {
       result.push(hexRef[Math.floor(Math.random() * 16)]);
     }
-    return result.join('');
+    let hex = result.join('');
+    return `#${hex}`;
   }
 
   const handleOptionSelect = () => {
-    let hex = getRanHex()
-    setColor(`#${hex}`)
+    let randomHex = getRanHex()
+    setColor(randomHex)
   }
 
   return (
     <>
     <ColorDisplay color={color}/>
-    <OptionContainer onOptionSelect={handleOptionSelect}/>
+    <OptionContainer color={color} onGenRanHex={getRanHex} onOptionSelect={handleOptionSelect}/>
     </>
   );
 }

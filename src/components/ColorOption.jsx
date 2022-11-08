@@ -1,9 +1,9 @@
 // import React from 'react'
 
-function ColorOption({ onOptionSelect }) {
+function ColorOption({ onOptionSelect, color }) {
   return (
     <div>
-        <button onClick={()=>onOptionSelect()} className="color-button">#7c33a7</button>
+        <button onClick={()=>onOptionSelect()} className="color-button">{color}</button>
     </div>
   )
 }
