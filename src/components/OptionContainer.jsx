@@ -1,14 +1,12 @@
 import React from 'react'
 import ColorOption from './ColorOption'
 
-function OptionContainer({ onOptionSelect, color, onGenRanHex }) {
-
-
+function OptionContainer({ onOptionSelect, hexCodes }) {
   return (
     <div className='color-option-container'>
-        <ColorOption color={color} onOptionSelect={onOptionSelect}/>
-        <ColorOption color={onGenRanHex()} onOptionSelect={onOptionSelect}/>
-        <ColorOption color={onGenRanHex()} onOptionSelect={onOptionSelect}/>
+    {hexCodes.map((hexcode, index)=>(
+      <ColorOption key={index} color={hexcode} onOptionSelect={onOptionSelect} />
+    ))}
     </div>
   )
 }
