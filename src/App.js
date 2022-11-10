@@ -1,25 +1,31 @@
 import ColorDisplay from "./components/ColorDisplay";
 import OptionContainer from "./components/OptionContainer";
 import { useState, useEffect } from "react";
+import AnswerConfirmation from "./components/AnswerConfirmation";
 
 
 function App() {
   const [color, setColor] = useState('')
   const [hexCodes, setHexCodes] = useState([])
+  const [isCorrect, setIsCorrect] = useState(undefined)
 
   useEffect(() => {
-    let hex = getRanHex()
-    setColor(hex)
-    setHexCodes([hex, getRanHex(),getRanHex()])
+    console.log(`effect`)
+    test()
   }, [])
 
-  const generateNewHexCodesArray = () =>{
+  const test = () => {
     let randomHex = getRanHex()
-    setColor(randomHex)
-    setHexCodes([randomHex, getRanHex(), getRanHex()])
+      setColor(randomHex)
+      setHexCodes(shuffleHexCodeArray([randomHex, getRanHex(), getRanHex()]))
+  }
+
+  const generateNewHexCodesArray = () =>{
+      let randomHex = getRanHex()
+      setColor(randomHex)
+      setHexCodes(shuffleHexCodeArray([randomHex, getRanHex(), getRanHex()]))
   }
   
-
   const getRanHex = () => {
     let result = [];
     let hexRef = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
@@ -33,10 +39,10 @@ function App() {
 
   const handleOptionSelect = (optionColor) => {
     if (optionColor===color) {
-      console.log(`match`)
+      setIsCorrect(true)
       generateNewHexCodesArray()
     } else {
-      console.log(`false`)
+      setIsCorrect(false)
     }
   }
 
@@ -51,7 +57,12 @@ function App() {
   return (
     <>
     <ColorDisplay color={color}/>
-    <OptionContainer hexCodes={shuffleHexCodeArray(hexCodes)} color={color} onGenRanHex={getRanHex} onOptionSelect={handleOptionSelect}/>
+    <OptionContainer hexCodes={hexCodes} color={color} onGenRanHex={getRanHex} onOptionSelect={handleOptionSelect}/>
+    {isCorrect?
+    <AnswerConfirmation styleColor='green' text={'Correct!'}/>
+    :
+    <AnswerConfirmation styleColor='red' text={'Try Again'}/>
+    }
     </>
   );
 }
