@@ -73,3 +73,26 @@ ANSWER STYLING
   font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
   text-align: center;
 }
+
+/* 
+SCORE CONTAINER
+*/
+.score-container {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* 
+SCORE TRACKER CONTAINER
+*/
+.score-tracker-container {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  font-weight: bold;
+  font-size: large;
+}
+
+.score-title {
+  border-bottom: 3px solid black;
+}

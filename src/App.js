@@ -2,19 +2,21 @@ import ColorDisplay from "./components/ColorDisplay";
 import OptionContainer from "./components/OptionContainer";
 import { useState, useEffect } from "react";
 import AnswerConfirmation from "./components/AnswerConfirmation";
+import ScoreContainer from "./components/ScoreContainer";
 
 
 function App() {
   const [color, setColor] = useState('')
   const [hexCodes, setHexCodes] = useState([])
   const [isCorrect, setIsCorrect] = useState(undefined)
+  const [currentScore, setCurrentScore] = useState(0)
+  const [highScore, setHighScore] = useState(0)
 
   useEffect(() => {
-    console.log(`effect`)
-    test()
+    setInitialHexCodes()
   }, [])
 
-  const test = () => {
+  const setInitialHexCodes = () => {
     let randomHex = getRanHex()
       setColor(randomHex)
       setHexCodes(shuffleHexCodeArray([randomHex, getRanHex(), getRanHex()]))
@@ -41,8 +43,10 @@ function App() {
     if (optionColor===color) {
       setIsCorrect(true)
       generateNewHexCodesArray()
+      increaseCurrentScore()
     } else {
       setIsCorrect(false)
+      resetCurrentScore()
     }
   }
 
@@ -54,8 +58,18 @@ function App() {
   return hexCodeArray
   }
 
+  const increaseCurrentScore = () => {
+    setCurrentScore(currentScore+1)
+    currentScore+1>highScore&&setHighScore(highScore+1)
+  }
+
+  const resetCurrentScore = () =>{
+    setCurrentScore(0)
+  }
+
   return (
     <>
+    <ScoreContainer currentScore={currentScore} highScore={highScore} />
     <ColorDisplay color={color}/>
     <OptionContainer hexCodes={hexCodes} color={color} onGenRanHex={getRanHex} onOptionSelect={handleOptionSelect}/>
     {isCorrect?
