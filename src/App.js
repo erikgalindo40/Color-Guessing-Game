@@ -8,7 +8,7 @@ import ScoreContainer from "./components/ScoreContainer";
 function App() {
   const [color, setColor] = useState('')
   const [hexCodes, setHexCodes] = useState([])
-  const [isCorrect, setIsCorrect] = useState(undefined)
+  const [isCorrect, setIsCorrect] = useState('start')
   const [currentScore, setCurrentScore] = useState(0)
   const [highScore, setHighScore] = useState(0)
 
@@ -17,18 +17,18 @@ function App() {
   }, [])
 
   const setInitialHexCodes = () => {
-    let randomHex = getRanHex()
+    let randomHex = getRandomHex()
       setColor(randomHex)
-      setHexCodes(shuffleHexCodeArray([randomHex, getRanHex(), getRanHex()]))
+      setHexCodes(shuffleHexCodeArray([randomHex, getRandomHex(), getRandomHex()]))
   }
 
   const generateNewHexCodesArray = () =>{
-      let randomHex = getRanHex()
+      let randomHex = getRandomHex()
       setColor(randomHex)
-      setHexCodes(shuffleHexCodeArray([randomHex, getRanHex(), getRanHex()]))
+      setHexCodes(shuffleHexCodeArray([randomHex, getRandomHex(), getRandomHex()]))
   }
   
-  const getRanHex = () => {
+  const getRandomHex = () => {
     let result = [];
     let hexRef = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
   
@@ -71,8 +71,10 @@ function App() {
     <>
     <ScoreContainer currentScore={currentScore} highScore={highScore} />
     <ColorDisplay color={color}/>
-    <OptionContainer hexCodes={hexCodes} color={color} onGenRanHex={getRanHex} onOptionSelect={handleOptionSelect}/>
-    {isCorrect?
+    <OptionContainer hexCodes={hexCodes} color={color} onGenRanHex={getRandomHex} onOptionSelect={handleOptionSelect}/>
+    {isCorrect=='start'?
+    <AnswerConfirmation styleColor='black' text={'Guess The Hex Code!'}/>
+    :isCorrect?
     <AnswerConfirmation styleColor='green' text={'Correct!'}/>
     :
     <AnswerConfirmation styleColor='red' text={'Try Again'}/>
