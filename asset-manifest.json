@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/Color-Guessing-Game/static/css/main.da674b98.css",
+    "main.js": "/Color-Guessing-Game/static/js/main.4ec598c7.js",
+    "index.html": "/Color-Guessing-Game/index.html",
+    "main.da674b98.css.map": "/Color-Guessing-Game/static/css/main.da674b98.css.map",
+    "main.4ec598c7.js.map": "/Color-Guessing-Game/static/js/main.4ec598c7.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.da674b98.css",
+    "static/js/main.4ec598c7.js"
+  ]
+}
