@@ -13,14 +13,11 @@ function App() {
   const [highScore, setHighScore] = useState(0)
 
   useEffect(() => {
-    setInitialHexCodes()
-  }, [])
-
-  const setInitialHexCodes = () => {
+    // set Initial Hex Codes
     let randomHex = getRandomHex()
       setColor(randomHex)
       setHexCodes(shuffleHexCodeArray([randomHex, getRandomHex(), getRandomHex()]))
-  }
+  }, [])
 
   const generateNewHexCodesArray = () =>{
       let randomHex = getRandomHex()
@@ -72,7 +69,7 @@ function App() {
     <ScoreContainer currentScore={currentScore} highScore={highScore} />
     <ColorDisplay color={color}/>
     <OptionContainer hexCodes={hexCodes} color={color} onGenRanHex={getRandomHex} onOptionSelect={handleOptionSelect}/>
-    {isCorrect=='start'?
+    {isCorrect==='start'?
     <AnswerConfirmation styleColor='black' text={'Guess The Hex Code!'}/>
     :isCorrect?
     <AnswerConfirmation styleColor='green' text={'Correct!'}/>
